@@ -1,0 +1,94 @@
+@font-face{
+    font-family: 'code-font';
+    src: url(./font/Myrica.TTC);
+}
+/*
+p{
+    font-family: sans-serif;
+}
+*/
+
+pre{
+    font-family: 'code-font';
+}
+p{
+    font-family: 'code-font';
+    line-height: 23px;
+    text-indent: 1em;
+}
+li{
+    font-family: 'code-font';
+}
+h2{
+    font-family: 'code-font';
+    border-left: solid 7px #bb0000 ;
+    padding:0px 7px;  
+}
+h4{
+    font-family: 'code-font';
+    border-left: solid 3px #bb0000 ;
+}
+
+body{
+    background:#dddddd;
+}
+
+#reference{
+    padding:0px 10px;
+}
+
+.indexcontent{
+    background:#ffffff;
+    padding: 10px 10px;
+}
+
+.content{
+    background:#ffffff;
+    padding: 10px 10px;
+    width:50%;
+    /*
+    margin-right:auto;
+    margin-left:auto;
+    */
+    margin:auto;
+}
+
+@media screen and (max-width:500px){
+    .content{
+        width:100%;
+    }
+}
+
+.showTable{
+    padding: 20px;
+}
+
+.sentence{
+    padding: 20px;
+}
+
+pre{
+    padding:5px 10px;
+    border-radius: 10px;
+    font-size:16px;
+    line-height: 25px;
+    overflow:scroll;
+    font-family: "code-font";
+}
+
+code{
+    -moz-tab-size: 2 ;	/* Firefox用 */
+    tab-size: 2 ;
+}
+
+.text{
+    padding-left:1em;
+    text-indent: -1em;
+}
+
+
+/*
+code {
+    font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+}
+*/
