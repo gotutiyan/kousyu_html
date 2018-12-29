@@ -7,9 +7,306 @@
         <link rel="stylesheet" href="./prettify/prettify.css">
     </head>
     <body>
-    <h2>はじめに</h2>
-        <p>やあ、ごつちやんだよ！このページは部活のHPを作る（もしくは更新する）にあたって、必要だと思う知識をまとめたものになります。流石に全てを網羅することはできないので、分からないところは各自で調べてください！！</p>
-        <p>※このページはGiuHub Pagesを利用して公開されています。リポジトリは<a href="https://github.com/gotutiyan/kousyu_html">こちら</a>cloneすることでオフラインでも閲覧できます。</p>
+        <div id="content">
+            <h2>はじめに</h2>
+            <p>やあ、ごつちやんだよ！このページは部活のHPを作る（もしくは更新する）にあたって、htmlの基礎からcssとの関わりまで、必要だと思う知識をまとめたものになります。流石に全てを網羅することはできないので、分からないところは各自で調べてください！！</p>
+            <p>※このページはGiuHub Pagesを利用して公開されています。リポジトリは<a href="https://github.com/gotutiyan/kousyu_html" target="_blank">こちら</a>。cloneすることでオフラインでも閲覧できます。</p>
+            <h2>サイト制作をするにあたって</h2>
+            <p>htmlを軸にサイト制作をするにあたっての環境構築的なことを書きます。</p>
+            <ul>
+                <li>htmlのコードは、.htmlの拡張子のファイルに記述していきます。つまり、メモ帳か何かでテキストファイルを作り、.txtのファイル名を.htmlに書き換えるだけで準備は完了です。<br>（text.txt　→ text.htmlみたいな）</li>
+                <br><li>htmlの実行（というか、書いたものがどう表示されるかを確認する）時には、.htmlのファイルをブラウザで開くだけで行えます。この操作は、デフォルトでは.htmlファイルをダブルクリックするだけで行えると思います。C言語みたいなコンパイルとかいう作業は必要ありません。</li>
+                <br><li>ファイルの編集はメモ帳でもターミナル上のvimでも、文字を書くことができればなんでもokです。しかし、できるだけVSCodeやAtomなどのIDEを使うことをお勧めします(コード補完が楽なので。)</li>
+                <br><li>これ見落としがちなんですが、そのサイトにおけるいわゆるトップページに当たるファイル名は、index.htmlとします。作ったサイトを本当にサーバーに置いて全世界から閲覧できるようにするとき、数あるhtmlファイルの中からサーバーが一番最初に探すのはindex.htmlだからですね。</li>
+                <br><li>htmlはプログラミング言語ではないです。（入力を受けて云々みたいな処理が無いので、ただのマークアップ言語です。）</li>
+            </ul>
+            <h2>基本的なテンプレ</h2>
+            <p>基本的なテンプレ、つまり　htmlの最小構成要素は以下の通りです。</p>
+            <pre class="prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt; </pre>
+<p>html,head,bodyといったものは全てタグと呼ばれるもので、後述します。charsetを使って文字コードをutf-8にすることで、いざ表示した時に文字化けするのを防いでいます。<br>titleに記述したものは、各ブラウザにおいてタブに表示されるものになります（このサイトだと「HTML講習のページ」）</p>
+
+<h2>タグ</h2>
+        <p>htmlは全てタグにより構成されています。タグは必ず&lt;タグ名&gt;で始まり、&lt;/タグ名&gt;とスラッシュを付けたもので終わります。このタグにはある程度特徴があり、どんな表示をさせたいかによって文章を囲むタグを変えるのです。<br>必須要素としては、一番大元のhtmlタグ、何かしらの前処理を行ったり、各種設定を書き込むheadタグ、そして実際に表示される内容を書き込むbodyタグです。</p>
+        <p>タグにはいくつか種類があるものの、そこまで多くはありません。使いそうなものだけ以下に列挙します。</p>
+        <ul>
+            <li>
+                <p><span class="big">&lt;h1&gt; &lt;h2&gt; &lt;h3&gt; &lt;h4&gt; &lt;h5&gt; &lt;h6&gt;</span><br>見出しです。これで囲むだけで、他の文字よりも大きくなります。h1が一番大きく、h6まであります。このサイトでは、h2をよく使っています。</p>
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;h1&gt;大きいでしょ&lt;/h1&gt;
+&lt;h2&gt;まあね&lt;/h2&gt;
+&lt;h3&gt;普通くらい&lt;/h3&gt;
+&lt;h4&gt;小さいでしょ&lt;/h4&gt;
+&lt;h5&gt;小さいよね&lt;/h5&gt;
+&lt;h6&gt;小さすぎませんか&lt;/h6&gt; </pre>
+                <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(0px)">
+                    <h1>大きいでしょ</h1>
+                    <h2 class="exclusion">まあね</h2>
+                    <h3>普通くらい</h3>
+                    <h4>小さいでしょ</h4>
+                    <h5>小さいよね</h5>
+                    <h6>小さすぎませんか</h6>
+                </div>
+            </li>
+            <li>
+                <p> <span class="big">&lt;p&gt;</span><br>段落を表します。pタグ間では改行が行われ、少し多めに行間が開きます。</p>
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;p&gt;１段落目&lt;/p&gt;
+&lt;p&gt;２段落目&lt;/p&gt;
+&lt;p&gt;ほげ&lt;/p&gt;</pre>
+                <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(0px)">
+                    <p>１段落目</p>
+                    <p>２段落目</p>
+                    <p>ほげ</p>
+                </div>
+            </li>
+            <li>
+                <p><span class="big">&lt;pre&gt;</span><br>pタグとは違って、改行やスペースの情報がそのまま表示にも反映されます。
+                <br>例えば、以下のような文字列を各タグで囲ったとき、実際の表示は右のように変化します。
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;p&gt;これは       pタグ
+    です。&lt;/p&gt;
+
+&lt;pre&gt;これは       preタグ
+    です。&lt;/pre&gt;
+                </pre>
+                <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(-20px)">
+                    <p>これは       pタグ
+                        です。</p>
+<pre>これは       preタグ
+    です。</pre>
+                </div>
+                <br>preタグは見た目のスペースを全て反映するので、工夫をしない限り、ソースコード上でのインデントも全て反映されてしまうので注意が必要です。pタグも1つ以上の空白と改行は、1つの空白として扱うようです。
+                </p>
+            </li>
+            <li>
+                <p> <span class="big">&lt;br&gt;</span><br>改行を表します。pタグなどで文章を書いているとき、&lt;br&gt;を入れることでそこで改行されます。
+                    <pre class="prettyprint linenums" style="display:inline-block">
+&lt;p&gt;文章を書いているとき、&lt;br&gt;改行します。&lt;/p&gt;</pre>
+                    <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(0px)">
+                        <p>文章を書いているとき、<br>改行します。</p>
+                    </div>
+                </p>
+            </li>
+            <li>
+                <p><span class="big">&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</span><br>今この項目で行っているような「箇条書き」をします。ulやolタグで囲まれた範囲にliタグで1つずつ箇条書きにします。<br>ulで囲んだ項目は単に箇条書きにされ、olで囲んだ項目には1から順に番号がつきます。（これは、UnorderList(非順番づけ)かOrderList(順番づけ)かの違いです。）
+                <br>もちろん、liタグの中にさらにpやpreタグなどを入れることも可能です。</p>
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;ul&gt;
+    &lt;li&gt;１項目目&lt;/li&gt;
+    &lt;li&gt;２項目目&lt;/li&gt;
+    &lt;li&gt;３項目目&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;ol&gt;
+    &lt;li&gt;１項目目&lt;/li&gt;
+    &lt;li&gt;２項目目&lt;/li&gt;
+    &lt;li&gt;３項目目&lt;/li&gt;
+&lt;/ol&gt; </pre>
+
+                    <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(0px)">
+                            <ul>
+                                    <li>１項目目</li>
+                                    <li>２項目目</li>
+                                    <li>３項目目</li>
+                                </ul>
+                                <br>
+                                <ol>
+                                    <li>１項目目</li>
+                                    <li>２項目目</li>
+                                    <li>３項目目</li>
+                                </ol>
+                    </div>
+            </li>
+            <li>
+                <p><span class="big">&lt;a&gt;</span><br>href="URL"とすることで囲んだ文字をハイパーリンクにします。つまり、文字をクリックすると他のURLに飛ばせます。これはhrefにhtmlファイルのパスを指定すれば、ページ切り替えができるのでよく使います。</p>
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;a href=&quot;https://google.com&quot;&gt;Googleへはこちら&lt;/a&gt;</pre>
+                <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(0px)">
+                    <a href="https://google.com" target="_blank">Googleへはこちら</a>
+                </div>
+            </li>
+            <li>
+                <p><span class="big">&lt;img&gt;</span><br>scr="ファイルへのパス"とすることで、画像を表示できます。ここでパスとは、これを記述したhtmlファイルから、目的の画像への相対パスです。また、これに関しては&lt;/img&gt;が要りません。また、（後述がありますが）widthやheightといった属性を指定することで、大きさを変えられます。</p>
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;img src=&quot;./images/image1.png&quot; width=100 height=100&gt; </pre>
+                <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(0px)">
+                    <img src="./images/image1.png" width=100 height=100>
+                </div>  
+            </li>
+        </ul>
+
+        <h2>タグの属性</h2>
+        <p>ここまで代表的なタグを見てきましたが、これらのタグにはそれぞれ<span style="color:red">属性</span>というものがあります。aタグのhref、imgタグのsrc,width,heightも属性です。どんな属性があるかはタグごとに決まっていて、属性はタグの機能を拡張できるものと考えるのが良いと思います。</p>
+        <p>属性は全てスペース区切りで書きます。以下、aタグを具体例に、属性によるある程度の制御を体験します。</p>
+        <p>aタグの持つ属性の一部には、href, target, donwloadがあります。</p>
+        <ul>
+            <li>href・・飛ばしたい先の情報、つまりURL(https://~)や別のhtmlファイルへのパスを指定します。</li>
+            <li>target・・属性を追加してtarget="_blank"を指定すれば、新しいタブで開くようになります。</li>
+            <li>download・・この属性を追加するだけで、ページに遷移するのではなく、そのファイルをユーザーにダウンロードさせることができます。</li>
+        </ul>
+        <p>これらを組み合わせて、機能がどう変わるかを見てみましょう。</p>
+        <pre class="prettyprint linenums" style="display:inline-block overflow: scroll;">
+&lt;p&gt;&lt;a href=&quot;./test/test.html&quot;&gt;普通に画面が変わります。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./test/test.html&quot; target=&quot;_blank&quot;&gt;別タブとして開きます。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./test/test.html&quot; download&gt;押すとhtmlファイルがダウンロードできます。&lt;/a&gt;&lt;/p&gt;</pre>
+        <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(0px)">
+            <p><a href="./test/test.html">普通に画面が変わります。</a></p>
+            <p><a href="./test/test.html" target="_blank">別タブとして開きます。</a></p>
+            <p><a href="./test/test.html" download>押すとhtmlファイルがダウンロードできます。</a></p>
+        </div>
+
+        <h2>CSSの導入</h2>
+        <p>htmlだけでもある程度の機能が実現できます。でも「機能性」は増えても、「デザイン性」はあまり得られません。どうせ作るからには見やすいページにしたいということで、登場するのがCSSです。CSSを使えば、色をつけたり、文字の大きさを変えたり、表示する位置を自在に変えたり、他にも様々なことができます。</p>
+        <p>CSSは以下の3通りでhtmlと紐つけることができます。</p>
+        <ol>
+            <li>
+                <p>headタグ内にstyleタグを使って書く</p>
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;head&gt;
+    &lt;style&gt;
+        CSSの処理
+    &lt;/style&gt;
+&lt;/head&gt;</pre>
+            </li>
+            <li>
+                <p>各タグのstyle属性として書く</p>
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;p style=&quot;CSSの処理&quot;&gt;&lt;/p&gt;</pre>
+            </li>
+            <li>
+                <p>あらかじめ.cssの拡張子のファイルに記述しておいて、html側のheadタグで読み込む。（以下はdesign.cssという名前で作った時）</p>
+                <pre class="prettyprint linenums" style="display:inline-block">
+&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;design.css&quot;&gt;
+&lt;/head&gt;</pre>
+
+            </li>
+        </ol>
+
+        <h2>「特定の要素」の指定方法</h2>
+        <p>ある文章を書いていて、「この行だけ大事だから赤くしたい」という気持ちになったとします。この時CSSで色を指定するのですが、「この行」の指定はどのように行うのでしょうか。</p>
+        <p>この時役に立つのが、属性としての<span style="color:red">class</span>と<span style="color:red">id</span>、そしてタグとしての<span style="color:red">div</span>と<span style="color:red">span</span>です。</p>
+        <p>classとidは、あらゆるタグにつけることができる属性で、class="名前" や id="名前" のようにそのタグに名前をつけることができます。ここでの名前は自由で、自分で分かりやすい名前をつけることができます。複数の名前をつける場合、class="名前1 名前2"のように空白で区切ります。
+        <pre class="prettyprint linenums" style="display:inline-block">
+&lt;p class=&quot;highlight&quot;&gt;目立たせたい行なんです&lt;/p&gt;
+&lt;p id=&quot;content&quot;&gt;大事な内容を書く&lt;/p&gt; </pre></p>
+<p>さらに重要なこととして、classは同じ名前を何度でも使えるのに対し、idは１度しか同じ名前を使えないという違いがあります。
+<pre class="prettyprint linenums" style="display:inline-block">
+&lt;p class=&quot;content&quot;&gt;&lt;/p&gt;
+&lt;p class=&quot;content&quot;&gt;&lt;/p&gt; 2回目でもok
+&lt;p id=&quot;title&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;title&quot;&gt;&lt;/p&gt;2回以上同じ名前を使えないのでダメ</pre>
+</p>
+<p>次にdivとspanです。これはタグ単位で名前をつけるidとclassとは少し違って、より大きな、もしくは小さな範囲に適用したいときに使用します。
+<br>先程までの例では、pタグにclassやidで名前をつければ、そのタグ全体に適用されました。しかし、複数にわたるpタグ全てに同じ処理をしたいときに、全部のpタグに同じclass=""を書くのは面倒です。そこで、divで括ることにより見やすくなります。
+<pre class="prettyprint linenums" style="display:inline-block">
+&lt;p class=&quot;content&quot;&gt;hoge1&lt;/p&gt;
+&lt;p class=&quot;content&quot;&gt;hoge2&lt;/p&gt;
+&lt;p class=&quot;content&quot;&gt;hoge3&lt;/p&gt;
+は冗長なので
+&lt;div class=&quot;content&quot;&gt;
+    &lt;p&gt;hoge1&lt;/p&gt;
+    &lt;p&gt;hoge2&lt;/p&gt;
+    &lt;p&gt;hoge3&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+</p>
+        <p>次にspanは、ある文章の重要キーワードだけ赤くしたいという時などに使います。
+        <pre class="prettyprint linenums" style="display:inline-block">
+&lt;p&gt;今勉強しているのは&lt;span class=&quot;highlight&quot;&gt;html&lt;/span&gt;です。&lt;/p&gt;</pre>
+        </p>
+        <p>このように、divはより大きな範囲に、spanはより小さな範囲で名前をつけるときに役立つということです。あくまでも、名前をつける処理はidやclassにより行います。</p>
+
+        <h2>いざ、CSSでデザインをする</h2>
+        <p>どこにデザインをするかということは、上記までの方法で名前をつけることで指定できることがわかりました。ここまではhtml側での話をしていたので、いよいよCSSを書いていきます。</p>
+        <p>html側でつけた名前に対してCSSで処理をする時、<span style="color:red">CSSセレクタ</span>を使って行います。CSSセレクタは以下の規則を持っています。</p>
+        <ul>
+            <li>タグ名に対しての処理は 「タグ名{ }」で行う。</li>
+            <li>classで付けた名前に対しては、「.class名{  }」と、ドットを付けて行う。</li>
+            <li>idで付けた名前に対しては、「#id名{  }」と、シャープを付けて行う。</li>
+            <li>あるタグや名前の中で囲まれているタグや名前に対しては、その入れ子の順（階層が浅い順）に空白を開けて記述する。(ulの中のliの中のtagクラスなら、ul li .tagみたいな)</li>
+            <li>あるclass名がついたタグを表すには、「タグ名.class名」とする。（空白は開けない、&lt;p class=&quot;tag&quot;&gt;ならp.tagみたいな) </li>
+            <li>複数の要素を指定するなら、カンマで区切る。(pタグとaタグに付けたかったら、p,aみたいな)</li>
+        </ul>
+        <p>以下、具体例です。</p>
+        <pre class="prettyprint linenums" style="display:inline-block">
+&lt;!-- html --&gt;
+&lt;pre&gt;わーい緑&lt;/pre&gt;
+&lt;p class=&quot;red&quot;&gt;赤くします&lt;/p&gt;
+&lt;p id=&quot;blue&quot;&gt;青いですね&lt;/p&gt;
+&lt;div class=&quot;report&quot;&gt;
+    &lt;p  class=&quot;title&quot;&gt;どんぐり、穴に落ちる&lt;/p&gt;
+    &lt;p&gt;持ち主だったおじいさんは、「悲しい」とコメントしています。&lt;/p&gt;
+    &lt;p&gt;もし見つけた方は、&lt;span class=&quot;red&quot;&gt;html警察&lt;/span&gt;までお願いします。&lt;/p&gt;
+&lt;/div&gt;</pre>
+
+<pre class="prettyprint linenums" style="display:inline-block">
+&lt;!-- CSS --&gt;
+pre{              /*単純にタグに対して*/
+    color:green;
+}
+.red{         /*class名に対して*/
+    color:red;
+}
+#blue{     /*id名に対して*/
+    color:blue;
+}
+.report p.title{     /*reportクラス内の、titleのクラス名を持つpタグに対して*/
+    color:red;
+    font-size:30px;
+}
+</pre>
+        <div style="border:solid 1px; background-color:rgb(255,255,255);transform:translateY(0px)">
+            <pre style="color:green">わーい緑</pre>
+            <p class="red">赤くします</p>
+            <p id="blue">青いですね</p>
+            <div class="report">
+                <p class="title">どんぐり、穴に落ちる</p>
+                <p>持ち主だったおじいさんは、「悲しい」とコメントしています。</p>
+                <p>もし見つけた方は、<span class="red">html警察</span>までお願いします。</p>
+            </div>
+        </div>
+        <p>CSSセレクタを書く上では空白の扱いに気をつけなければなりません。<br>例えば、p .c1 ではpタグの中にあるc1クラスの要素を表しますが、p.c1ではc1のクラス名がついたpタグを表します。</p>
+        <pre class="prettyprint linenums" style="display:inline-block">
+p .c1だと
+&lt;p&gt;
+    &lt; class=&quot;c1&quot;&gt;&lt;/&gt;
+&lt;/p&gt;</pre>
+        <pre class="prettyprint linenums" style="display:inline-block">
+p.c1だと
+&lt;p class=&quot;c1&quot;&gt;&lt;/p&gt; </pre>
+
+        <h2>エスケープ文字</h2>
+        <p>ここまでコード例と共に紹介してきましたが、これらのコードを画面に表示させるのには一工夫要ります。例えば、<br>「pタグは、&lt;p&gt;で始まり&lt;/p&gt;で終わります。」<br>という文章を書く時、これをそのままhtmlファイルに書き込むと文章中の「&lt;p&gt;」や「&lt;/p&gt;」はhtmlタグとして認識されて、「で始まり」の部分がpタグで囲まれた段落であると認識されてしまいます。</p>
+        <p>これを防ぐためにエスケープ文字を使います。代表的なエスケープ文字を以下に示します。</p>
+        <table>
+            <tr>
+                <th>&lt;</th>
+                <th>&gt;</th>
+                <th>&quot;</th>
+                <th>&#x27;</th>
+                <th>&amp;</th>
+            </tr>
+            <tr>
+                <td>&amp;lt;</td>
+                <td>&amp;gt;</td>
+                <td>&amp;quot;</td>
+                <td>&amp;#x27;</td>
+                <td>&amp;amp;</td>
+            </tr>
+        </table>
+        <p>よって、例えば 「&lt;p class=&quot;hoge&quot;&gt;文章です&lt;/p&gt;」 と書くときには、<br>「&amp;lt;p class=&amp;quot;hoge&amp;quot;&amp;gt;文章です&amp;lt;/p&amp;gt;」 と書くことになります。この変換は手作業でやると日が暮れるので、適当にC++とかpythonとかで変換プログラムを組むと楽です。</p>
+        <p>蛇足ですが、&amp;lt;を画面に表示するためには、これをそのままhtmlに書くと &lt; になってしまうので、先頭の&amp;をエスケープして&amp;amp;lt;と書いています。ちなみにこの&amp;amp;lt;は同様の理由で先頭の&amp;をエスケープしないと表示されないので、&amp;amp;amp;lt;になります・・。</p>
+    </div><!--content-->
         <script src="prettify/prettify.js"></script>
         <script>prettyPrint();</script>
   </body>
@@ -18,4 +315,12 @@
 <!--
     <pre class="prettyprint linenums">
         </pre>
+-->
+
+<!--
+    <p><span class="big">&lt;&gt;</span><br></p>
+    <pre class="prettyprint linenums" style="display:inline-block">
+    </pre>
+    <div style="display:inline-block; background-color:rgb(200,200,200);transform:translateY(0px)">
+    </div>
 -->
